@@ -6,3 +6,6 @@ Sistema para mural de informações e recados dos alunos da Proz
     - Valks
     - Ana
     - Fernando
+  
+## Professor
+  - Pedro Rafante
