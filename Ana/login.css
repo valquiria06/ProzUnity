@@ -88,5 +88,21 @@ input{
     font-size: 16px;
     color: white;
     margin-top: 55px;
+    cursor: pointer;
+    transition: transform 0.2s;
     
+}
+
+.entrar:active {
+    transform: scale(0.9);
+}
+
+.entrar-clicked {
+    animation: click-animation 0.4s forwards;
+}
+
+@keyframes click-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
