@@ -5,13 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProzUnity</title>
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="show_password.js">
 </head>
 <body>
     <div class="conteiner" >
-       <div class="background">TESTE
-   
+       <div class="background">
+        <div class="dados">
+          <form class="form" >
+            <input type="text" id="username" placeholder="Usuário"> <p>
+            <input type="password" id="password" placeholder="Login">
+            <span class="toggle-password" onclick="togglePassword()">🐵mostrar a senha</span><p></p>
+            <button class="entrar" type="submit">Entrar</button>
+          </form> 
+        </div>
     </div>        
 
-    </div>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const passwordIcon = document.querySelector('.toggle-password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.textContent = '🙈 esconder senha'; // Ícone de esconder senha
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.textContent = '🐵 mostrar a senha '; // Ícone de mostrar senha
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var errorMessage = document.getElementById('error-message');
+
+            if (username === '' || password === '') {
+                errorMessage.textContent = 'Por favor, preencha todos os campos.';
+                return;
+            }
+
+            try {
+                let response = await fetch('https://api.prozeducacao.com.br/v1/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    })
+                });
+
+                let data = await response.json();
+
+                if (response.ok) {
+                    // Armazena os dados do usuário no localStorage
+                    localStorage.setItem('userData', JSON.stringify(data));
+                    window.location.href = '\\26.149.118.195\ProzUnity\Servidor';
+                } else {
+                    errorMessage.textContent = 'Usuário ou senha inválidos.';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Erro ao conectar com o servidor. Tente novamente mais tarde.';
+            }
+        });
+    </script>
 </body>
 </html>
