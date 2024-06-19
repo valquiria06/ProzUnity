@@ -4,74 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+
+        body, html{
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+        background-image: url('background/image.png');
         }
-        .container {
-            background: #ffffff;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
+
+        .conteiner{
+
+        background-color: transparent;
+        width: 30rem;
+        height: 100%;
+        background-color:rgba(241, 116, 71, 0.555);
+        opacity: 0.7;
+        border-radius: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         }
-        h1 {
-            color: #333;
+
+        .background {
+
+        width: 10%;
+        background-color: white;
+        text-align: center;
+        border-radius: 6%;
+        padding: 190px;
+        margin: 0 auto;
+
         }
-        input {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+
+        .dados{
+
+        display: flex;
+        height: 95px;
+        justify-content:center;
+        align-items: center;
         }
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+
+        input{
+
+        border: none;
+        border-bottom: 1px solid #7115ad;
+        width: 15rem;
+        height: 3rem;
+        border-radius: 10%;
+
         }
-        button:hover {
-            background-color: #0056b3;
+
+        ::-webkit-input-placeholder {
+        text-align: center;
         }
-        #error-message {
-            color: red;
-            margin-top: 10px;
+        :-moz-placeholder {
+        text-align: center; 
+        }
+        ::-moz-placeholder {
+        text-align: center;
+        }
+        :-ms-input-placeholder {
+        text-align: center; 
+        }
+
+        ::placeholder {
+        font-size: 20px;
+        text-align: center;
+        opacity: 0.6; 
+        }
+
+        .toggle-password {
+        position: relative;
+        top: 40%;
+        right: 0px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        }
+
+        .entrar{
+
+        border-radius: 20%;
+        width:55%;
+        border: none;
+        border-bottom: 1px solid #7115ad;
+        background-color: rgba(231, 129, 45, 0.993);
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        margin-top: 55px;
+        cursor: pointer;
+        transition: transform 0.2s;
+
+        }
+
+        .entrar:active {
+        transform: scale(0.9);
+        }
+
+        .entrar-clicked {
+        animation: click-animation 0.4s forwards;
+        }
+
+        @keyframes click-animation {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Login</h1>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Usuário">
-            <input type="password" id="password" placeholder="Senha">
-            <button type="button" onclick="showPassword()">Mostrar senha</button>
-            <button type="submit">Entrar</button>
-        </form>
-        <p id="error-message"></p>
-    </div>
+<body>
+    <div class="conteiner" >
+       <div class="background">
+        <div class="dados">
+          <form id="loginForm" method="post" class="form" >
+            <input type="text" id="username" placeholder="Usuário"> <p>
+            <input type="password" id="password" placeholder="Login">
+            <span class="toggle-password" onclick="togglePassword()">🐵mostrar a senha</span><p></p>
+            <div class="g-recaptcha"  data-sitekey="6LfNPPwpAAAAAKOo5v16IPagUyMDHsG5sz-HFrRd"></div>
+            <button class="entrar" type="submit" onclick="return validar()">Entrar</button>
+            <!-- <button class="entrar" 
+                data-sitekey="6LddOPwpAAAAAAkgoon7ZZiL1eKzO8XT0mwDGnyI" 
+                data-callback='onSubmit' 
+                data-action='submit'
+                type="submit" >Submit</button> -->
+            
+          </form> 
+        </div>
+    </div>        
+
+</body>
+
+<script type='text/javascript'>
+   function validar() {
+     if (grecaptcha.getResponse() == ""){
+        alert('Falha na verificação do reCAPTCHA. Por favor, tente novamente.');
+        return false;
+     }
+   }
+
+
+
+ </script>
+
+<script>
+   function valida() {
+     if (grecaptcha.getResponse() == ""){
+        alert("False");
+        return false;
+     }
+
+   }
+ </script>
+ <?php
+if (isset($_POST['enviar'])){
+    print($_POST);
+
+}
+ ?>
+
+
+
+
     <script>
-        function showPassword() {
-            var passwordInput = document.getElementById("password");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const passwordIcon = document.querySelector('.toggle-password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.textContent = '🙈 esconder senha'; // Ícone de esconder senha
             } else {
-                passwordInput.type = "password";
+                passwordInput.type = 'password';
+                passwordIcon.textContent = '🐵 mostrar a senha '; // Ícone de mostrar senha
             }
         }
+
         document.getElementById('loginForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             

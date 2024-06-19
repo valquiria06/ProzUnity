@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProzUnity</title>
+    <link rel="icon"
+    type="imagem/png"
+    href="background/icons8-p-16.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="servidor/login.php">
 </head>
@@ -11,13 +18,17 @@
     <div class="conteiner" >
        <div class="background">
         <div class="dados">
-          <form class="form" >
-            <input type="text" id="username" placeholder="Usuário"> <p>
-            <input type="password" id="password" placeholder="Login">
-            <span class="toggle-password" onclick="togglePassword()">🐵mostrar a senha</span><p></p>
-            <button class="entrar" type="submit">Entrar</button>
-            <p id="error-message"></p>
-          </form> 
+            <div class="form-container">
+                <h1 class="fonte">LOGIN</h1>
+              <form class="form" >
+               <input type="text" id="username" placeholder="Usuário"> <p>
+               <input type="password" id="password" placeholder="Login"> <p></p>
+               <span class="toggle-password" onclick="togglePassword()">🐵 Mostrar Senha</span><p></p>
+               <div class="g-recaptcha" data-sitekey="chave_do_site"></div>
+               <button class="entrar" type="submit">Entrar</button>
+               <p id="error-message"></p>
+             </form>
+            </div> 
         </div>
     </div>        
 
@@ -27,10 +38,10 @@
             const passwordIcon = document.querySelector('.toggle-password');
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                passwordIcon.textContent = '🙈 esconder senha'; // Ícone de esconder senha
+                passwordIcon.textContent = '🙈 Esconder Senha'; // Ícone de esconder senha
             } else {
                 passwordInput.type = 'password';
-                passwordIcon.textContent = '🐵 mostrar a senha '; // Ícone de mostrar senha
+                passwordIcon.textContent = '🐵 Mostrar Senha '; // Ícone de mostrar senha
             }
         }
 

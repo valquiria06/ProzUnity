@@ -69,11 +69,10 @@
                 document.getElementById('user-name').textContent = userData.name;
                 document.getElementById('user-email').textContent = userData.email;
                 document.getElementById('user-telephone').textContent = userData.telephone;
-                document.getElementById('user-role').textContent = userData.role;
-                document.getElementById('user-unit').textContent = userData.unit;
+                
                 document.getElementById('user-cpf').textContent = userData.cpf;
                 document.getElementById('user-birthdate').textContent = userData.birthdate;
-                document.getElementById('user-last-access').textContent = new Date(userData.last_acesss_at).toLocaleString();
+                
                    }
         });
 
@@ -95,11 +94,9 @@
         <p>Nome: <span id="user-name"></span></p>
         <p>Email: <span id="user-email"></span></p>
         <p>Telefone: <span id="user-telephone"></span></p>
-        <p>Função: <span id="user-role"></span></p>
-        <p>Unidade: <span id="user-unit"></span></p>
         <p>Data de Nascimento: <span id="user-birthdate"></span></p>
         <p>CPF: <span id="user-cpf"></span></p>
-        <p>Último Acesso: <span id="user-last-access"></span></p>
+        
        
         
         <button onclick="logout()">Logout</button>

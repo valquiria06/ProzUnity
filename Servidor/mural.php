@@ -14,21 +14,34 @@
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
         }
-        .container {
-            background: #ffffff;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        .comentar{
+            border radius: 45;
+            border color: purple;
         }
-        h1 {
-            color: #333;
+        .foto_perfil{
+            width: 210px; 
+            height: 210px; 
+            background-color: purple;
+            border-radius: 50%; 
+            left: 0;
+            position: absolute;
+            border: 5px solid #2c3e50;
+            margin-top: -300px;
+        }
+        .nome{
+            font-seze: 15em;
+            text-align: left;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Mural - Em Desenvolvimento</h1>
+    <div class="menu_lateral_esquerda">
+        <div class="foto_perfil"><div>
+        <h1 class="nome"></h1>
     </div>
+
+    <div class="comentar"></div>
+
+    <img src="proz_viva_sua_profissao" alt="Logo Proz" id="Logo_Proz_Profissao">
 </body>
 </html>
