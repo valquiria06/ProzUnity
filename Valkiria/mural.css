@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -91,40 +90,4 @@ body {
         margin-bottom: 10px;
     }
 }
-=======
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-}
-.comentar{
-    border-radius: 15%;
-    border-color: rgb(0, 0, 0);
-    width: 350px;
-    height: 190px;
-    margin-top: -350px;
-}
-.foto_perfil{
-    width: 210px; 
-    height: 210px; 
-    background-color: purple;
-    border-radius: 50%; 
-    left: 0;
-    position: absolute;
-    border: 5px solid #2c3e50;
-    margin-top: -300px;
-}
-.nome{
-    font-size: 1.3em;
-    text-align: left;
-    margin-top: 250px;
-    margin-right: 3%;
-}
-#Logo_Proz_Profissao{
-    width: 150px;
-}
->>>>>>> 127c543edea29ab8251154592c5861dbba52fe03
+
