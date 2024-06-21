@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="mural.css">
 </head>
 <body>
-    <div class="menu">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="menu" id="menu">
         <div class="foto_usuario"></div>
         <a href="#">Perfil</a>
         <a href="#">Notas</a>
@@ -20,5 +21,16 @@
             <button class="comment-button">Comentar</button>
         </div>
     </div>
+
+    <img src="logoproz.png" alt="logoproz" class="logoproz">
+
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('menu-active');
+        }
+
+    </script>
 </body>
 </html>
