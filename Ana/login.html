@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProzUnity</title>
+    <link rel="icon"
+    type="imagem/png"
+    href="background/icons8-p-16.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="servidor/login.php">
+</head>
+<body>
+    <div class="conteiner" >
+       <div class="background">
+        <div class="dados">
+            <div class="form-container">
+                <h1 class="fonte">LOGIN</h1>
+              <form class="form" >
+               <input type="text" id="username" placeholder="Usuário"> <p>
+               <input type="password" id="password" placeholder="Login"> <p></p>
+               <span class="toggle-password" onclick="togglePassword()">🐵 Mostrar Senha</span><p></p>
+               <div class="g-recaptcha" data-sitekey="chave_do_site"></div>
+               <button class="entrar" type="submit">Entrar</button>
+               <p id="error-message"></p>
+             </form>
+            </div> 
+        </div>
+    </div>        
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const passwordIcon = document.querySelector('.toggle-password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.textContent = '🙈 Esconder Senha'; // Ícone de esconder senha
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.textContent = '🐵 Mostrar Senha '; // Ícone de mostrar senha
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var errorMessage = document.getElementById('error-message');
+
+            if (username === '' || password === '') {
+                errorMessage.textContent = 'Por favor, preencha todos os campos.';
+                return;
+            }
+
+            try {
+                let response = await fetch('https://api.prozeducacao.com.br/v1/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    })
+                });
+
+                let data = await response.json();
+
+                if (response.ok) {
+                    // Armazena os dados do usuário no localStorage
+                    localStorage.setItem('userData', JSON.stringify(data));
+                    window.location.href = '\\26.149.118.195\ProzUnity\Servidor';
+                } else {
+                    errorMessage.textContent = 'Usuário ou senha inválidos.';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Erro ao conectar com o servidor. Tente novamente mais tarde.';
+            }
+        });
+    </script>
+
+</body>
+</html>
