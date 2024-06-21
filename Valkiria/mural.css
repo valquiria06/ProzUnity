@@ -96,6 +96,7 @@ body {
     width: 150px;
     height: 45px;
     float: right; 
+    margin-top: 20px;
 }
 
 @media (max-width: 600px) {
