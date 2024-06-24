@@ -80,8 +80,6 @@ function teste() {
     window.open("www.gmail.com.br", "_blank");
 }
 
-
-
     </script>
 </head>
 <body>
