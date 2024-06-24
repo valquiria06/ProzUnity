@@ -73,28 +73,8 @@
                 alert('Token não encontrado.');
             }
         }
-        function goToNotas2() {
-    const userData = JSON.parse(localStorage.getItem('userData'));
-    if (userData && userData.re_enroll_path) {
-        const url1 = userData.re_enroll_path;
-        const url2 = `https://enferminas.prozeducacao.com.br/academico/boletim1.php?${userData.re_enroll_path.split('?')[1]}`;
 
-        // Abre a primeira página
-        const win1 = window.open(url1, '_blank');
 
-        // Fecha a primeira página após 10 segundos
-        setTimeout(function() {
-            if (win1 && !win1.closed) {
-                
-                win1.close();
-                // Abre a segunda página após fechar a primeira
-                window.open(url1, '_blank');
-            }
-        }, 3000); // 10000 milissegundos = 10 segundos
-    } else {
-        alert('Token não encontrado.');
-    }
-}
 function teste() {
     window.open("www.google.com.br", "_blank");
     window.open("www.gmail.com.br", "_blank");

@@ -56,6 +56,7 @@
         width: 15rem;
         height: 3rem;
         border-radius: 10%;
+        text-align: center;
 
         }
 
@@ -110,34 +111,87 @@
         animation: click-animation 0.4s forwards;
         }
 
+        /* Tela de Loading */
+#loading-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000; /* Para garantir que fique acima de todo o conteúdo */
+}
+
+#loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+    #loader {
+        width: 80px;
+        height: 80px;
+        border-width: 10px;
+    }
+    #loading-screen p {
+        font-size: 14px;
+    }
+}
+
         @keyframes click-animation {
         0% { transform: scale(1); }
         50% { transform: scale(1.2); }
         100% { transform: scale(1); }
         }
+
+        @media screen and (orientation: landscape) {
+        .container {
+        background-color: lightcoral;
+        text-align: left;
+    }
+}
     </style>
 </head>
 <body>
 <body>
+
     <div class="conteiner" >
        <div class="background">
         <div class="dados">
+        <div class="form-container">
+          <h1 class="fonte">LOGIN</h1>
           <form id="loginForm" method="post" class="form" >
-            <input type="text" id="username" placeholder="Usuário"> <p>
-            <input type="password" id="password" placeholder="Login">
+            <input type="text" id="username" placeholder="Login"> <p>
+            <input type="password" id="password" placeholder="Senha"><p></p>
             <span class="toggle-password" onclick="togglePassword()">🐵mostrar a senha</span><p></p>
-            <div class="g-recaptcha"  data-sitekey="6LfNPPwpAAAAAKOo5v16IPagUyMDHsG5sz-HFrRd"></div>
+            <div class="g-recaptcha"  data-sitekey="6Ld8s_8pAAAAAKg-gap4HA65BLKcsVgFpRScpEIL"></div>
             <button class="entrar" type="submit" onclick="return validar()">Entrar</button>
-            <!-- <button class="entrar" 
-                data-sitekey="6LddOPwpAAAAAAkgoon7ZZiL1eKzO8XT0mwDGnyI" 
-                data-callback='onSubmit' 
-                data-action='submit'
-                type="submit" >Submit</button> -->
+            <div id="loading-screen">
+        <div id="loader"></div>
+        <p>Carregando...</p>    
+    </div>
             
           </form> 
+        </div>  
         </div>
     </div>        
-
+   
 </body>
 
 <script type='text/javascript'>
@@ -148,7 +202,14 @@
      }
    }
 
+   window.addEventListener('load', function() {
+    const loadingScreen = document.getElementById('loading-screen');
+    const content = document.getElementById('content');
 
+    
+    loadingScreen.style.display = 'none';
+    content.style.display = 'block';
+});
 
  </script>
 
@@ -177,10 +238,10 @@ if (isset($_POST['enviar'])){
             const passwordIcon = document.querySelector('.toggle-password');
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                passwordIcon.textContent = '🙈 esconder senha'; // Ícone de esconder senha
+                passwordIcon.textContent = '🙈 esconder senha'; 
             } else {
                 passwordInput.type = 'password';
-                passwordIcon.textContent = '🐵 mostrar a senha '; // Ícone de mostrar senha
+                passwordIcon.textContent = '🐵 mostrar a senha '; 
             }
         }
 
