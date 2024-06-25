@@ -8353,7 +8353,7 @@ a[data-toggle="collapse"] {
 
 /* Estilizaçao do popup de avatares */
 .modal {
-  display: none; /* Esconde a modal por padrão */
+  display: none; /* Esconde a modal por padrão quando se clica fora */
   position: fixed; 
   z-index: 1; 
   left: 0;
@@ -8368,21 +8368,21 @@ a[data-toggle="collapse"] {
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
-  margin-top: 11%;
+  margin-top: 10%;
   padding: 20px;
   border: 2px solid #888;
-  width: 60%; 
-  height: 50%;
+  width: 50%; 
+  height: 60%;
   border-color: orange;
   position: relative; 
 }
 
 .button-container {
   position: absolute;
-  bottom: 20px; /* Ajusta a distância do fundo */
-  right: 20px; /* Ajusta a distância da direita */
-  display: flex; /* Para colocar os botões lado a lado */
-  padding: 10px;
+  bottom: 20px; 
+  right: 20px; 
+  display: flex; 
+  padding: 1px;
 }
 
  /*    X (fechar ) do popup    */
@@ -8428,6 +8428,34 @@ a[data-toggle="collapse"] {
   background-color: #eb822c; 
 }
 
+.circle-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebra de linha */
+  gap: 10px; /* Espaçamento entre os círculos */
+  justify-content: center; /* Centraliza os círculos */
+  padding: 20px 0; /* Espaçamento interno */
+}
+
+.circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: orange; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden; /* Esconde partes da imagem que excedem o círculo */
+  border-color: orange;
+  border: 3px;
+}
+
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
 .back-to-top {
   position: fixed;
   bottom: 20px;
@@ -8447,3 +8475,36 @@ a[data-toggle="collapse"] {
   background-color: #FF8C00;
 }
 
+.user-photo {
+  margin-top: 1px;
+  text-align: center;
+}
+
+.user-circle {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background-color: orange; /* Cor de fundo para visualização */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Esconde partes da imagem que excedem o círculo */
+}
+
+.user-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que a imagem cubra todo o círculo */
+}
+
+.Logoproz {
+  width: 100%; 
+  max-width: 150px;
+  float: right;
+  margin-top: -24%;
+}
+
+.Logoproz img {
+  width: 100%;
+  height: auto; 
+}

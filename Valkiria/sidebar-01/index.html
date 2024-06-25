@@ -15,7 +15,12 @@
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
-		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/valks.jpg);"></a>
+
+          <div class="user-photo">
+            <div id="userPhotoContainer" class="circle user-circle"></div>
+        </div>
+
+		  	<!-- <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/valks.jpg);"></a> -->
           <a class="nome_user">Nome Do Aluno</a>
 	        <ul class="list-unstyled components mb-5">
 	          <li class="active">
@@ -33,24 +38,24 @@
 	              <a href="#">Notas</a>
 	          </li>
 	          <li>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Suporte</a>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Dúvidas Frequentes</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="#">Page 1</a>
+                    <a href="#">O que fazer em caso de perder a senha?</a>
                 </li>
                 <li>
-                    <a href="#">Page 2</a>
+                    <a href="#">Em que situação posso fazer denúncia de uma postagen?</a>
                 </li>
                 <li>
-                    <a href="#">Page 3</a>
+                    <a href="#"></a>
                 </li>
               </ul>
 	          </li>
 	          <li>
-              <a href="#">Dúvidas Frequentes</a>
+              <a href="#">Suporte</a>
 	          </li>
 	          <li>
-              <a href="#">Sair</a>
+              <a href="#">Denúncias</a>
 	          </li>
 	        </ul>
 
@@ -68,9 +73,21 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <p>Escolha um Avatar: </p>
+            <div class="circle-container">
+              <div class="circle" data-img-src="imagens_avatares/1.png"><img src="imagens_avatares/1.png" alt="Foto 1"></div>
+              <div class="circle" data-img-src="imagens_avatares/2.png"><img src="imagens_avatares/2.png" alt="Foto 2"></div>
+              <div class="circle" data-img-src="imagens_avatares/3.png"><img src="imagens_avatares/3.png" alt="Foto 3"></div>
+              <div class="circle" data-img-src="imagens_avatares/4.png"><img src="imagens_avatares/4.png" alt="Foto 4"></div>
+              <div class="circle" data-img-src="imagens_avatares/5.png"><img src="imagens_avatares/5.png" alt="Foto 5"></div>
+              <div class="circle" data-img-src="imagens_avatares/6.png"><img src="imagens_avatares/6.png" alt="Foto 6"></div>
+              <div class="circle" data-img-src="imagens_avatares/7.png"><img src="imagens_avatares/7.png" alt="Foto 7"></div>
+              <div class="circle" data-img-src="imagens_avatares/8.png"><img src="imagens_avatares/8.png" alt="Foto 8"></div>
+              <div class="circle" data-img-src="imagens_avatares/9.png"><img src="imagens_avatares/9.png" alt="Foto 9"></div>
+              <div class="circle" data-img-src="imagens_avatares/10.png"><img src="imagens_avatares/10.png" alt="Foto 10"></div>
+          </div>
             <div class="button-container">
-              <button id="saveBtn">Salvar</button>
-              <button id="backBtn">Voltar</button>
+              <button id="saveBtn">Salvar</button> 
+              <button id="backBtn">Voltar</button> 
             </div>
         </div>
     </div>
@@ -118,7 +135,7 @@
       <div id="comments"></div>
 
       <button id="backToTop" class="back-to-top">⬆</button>
-
+      <div class="Logoproz""><img src="logoproz.png" alt="Logo Proz"></div>
       <script>
         function addComment() {
             const commentBox = document.getElementById('comment-box');
@@ -195,6 +212,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+//selecionar a foto e mostrar no campo de foto principal"
+const circleElements = document.querySelectorAll(".circle");
+const userPhotoContainer = document.getElementById("userPhotoContainer");
+
+circleElements.forEach(circle => {
+    circle.addEventListener("click", function() {
+        const imgSrc = this.getAttribute("data-img-src");
+        userPhotoContainer.innerHTML = `<img src="${imgSrc}" alt="Foto do Usuário">`;
+        modal.style.display = "none"; // Fecha a modal após a seleção
+    });
+});
+
     </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>
