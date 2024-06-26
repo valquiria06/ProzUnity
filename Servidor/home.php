@@ -86,7 +86,7 @@ function teste() {
     <div class="container">
         <h1>Bem-vindo</h1>
         <button onclick="window.location.href='dados.php'">Tela de Dados</button>
-        <button onclick="window.location.href='mural.php'">Mural</button>
+        <button onclick="window.location.href='mural/mural.php'">Mural</button>
         <button onclick="goToNotas()">Notas</button>
         <p><button class="logout-button" onclick="logout()">Logout</button></p>
         

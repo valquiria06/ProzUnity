@@ -111,65 +111,48 @@
         animation: click-animation 0.4s forwards;
         }
 
-        /* Tela de Loading */
-#loading-screen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 1000; /* Para garantir que fique acima de todo o conteúdo */
-}
-
-#loader {
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid #3498db;
-    width: 120px;
-    height: 120px;
-    -webkit-animation: spin 2s linear infinite; /* Safari */
-    animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@media (max-width: 600px) {
-    #loader {
-        width: 80px;
-        height: 80px;
-        border-width: 10px;
-    }
-    #loading-screen p {
-        font-size: 14px;
-    }
-}
-
-        @keyframes click-animation {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
+        #loading-screen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(96, 21, 158, 0.473);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000; /* Para garantir que fique acima de todo o conteúdo */
+            display: none; /* Inicialmente oculto */
         }
 
-        @media screen and (orientation: landscape) {
-        .container {
-        background-color: lightcoral;
-        text-align: left;
-    }
-}
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 12px solid #651080;;
+            border-top: 12px solid #f05314;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+
     </style>
 </head>
 <body>
-<body>
+
+      <div id="loading-screen">
+         <div class="spinner"></div>
+         <p class="loading-text">Carregando...</p>
+      </div>
 
     <div class="conteiner" >
        <div class="background">
@@ -177,16 +160,12 @@
         <div class="form-container">
           <h1 class="fonte">LOGIN</h1>
           <form id="loginForm" method="post" class="form" >
-            <input type="text" id="username" placeholder="Login"> <p>
+            <input type="text" id="username" placeholder="Usuario"> <p>
             <input type="password" id="password" placeholder="Senha"><p></p>
-            <span class="toggle-password" onclick="togglePassword()">🐵mostrar a senha</span><p></p>
+            <span class="toggle-password" onclick="togglePassword()">🐵Mostrar Senha</span><p></p>
             <div class="g-recaptcha"  data-sitekey="6Ld8s_8pAAAAAKg-gap4HA65BLKcsVgFpRScpEIL"></div>
-            <button class="entrar" type="submit" onclick="return validar()">Entrar</button>
-            <div id="loading-screen">
-        <div id="loader"></div>
-        <p>Carregando...</p>    
-    </div>
-            
+            <button class="entrar" type="submit" onclick="return validar(),showLoadingAndRedirect()">Entrar</button>
+            <div id="loading-screen">            
           </form> 
         </div>  
         </div>
@@ -201,17 +180,43 @@
         return false;
      }
    }
-
-   window.addEventListener('load', function() {
-    const loadingScreen = document.getElementById('loading-screen');
-    const content = document.getElementById('content');
-
-    
-    loadingScreen.style.display = 'none';
-    content.style.display = 'block';
-});
-
  </script>
+
+
+<script>
+        function showLoadingAndRedirect() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const content = document.querySelector('.container');
+
+            // Mostrar a tela de loading
+            loadingScreen.style.display = 'flex';
+            // Ocultar o conteúdo da página
+            content.style.display = 'none';
+
+            // Redirecionar para a próxima página após 2 segundos
+            setTimeout(function() {
+                window.location.href = 'mural.php'; // Substitua pelo URL da próxima página
+            }, 2000);
+        }
+    </script>
+
+<script>
+window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const content = document.getElementById('content');
+
+            // Esconder a tela de loading
+            loadingScreen.style.display = 'none';
+            // Mostrar o conteúdo da página
+            content.style.display = 'block';
+
+            // Redirecionar para a próxima página após 2 segundos
+            setTimeout(function() {
+                window.location.href = 'proxima-pagina.html'; // Substitua pelo URL da próxima página
+            }, 2000);
+        });
+
+</script>
 
 <script>
    function valida() {
@@ -238,10 +243,10 @@ if (isset($_POST['enviar'])){
             const passwordIcon = document.querySelector('.toggle-password');
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                passwordIcon.textContent = '🙈 esconder senha'; 
+                passwordIcon.textContent = '🙈 Esconder Senha'; 
             } else {
                 passwordInput.type = 'password';
-                passwordIcon.textContent = '🐵 mostrar a senha '; 
+                passwordIcon.textContent = '🐵 Mostrar Senha '; 
             }
         }
 
@@ -274,7 +279,7 @@ if (isset($_POST['enviar'])){
                 if (response.ok) {
                     // Armazena os dados do usuário no localStorage
                     localStorage.setItem('userData', JSON.stringify(data));
-                    window.location.href = 'home.php';
+                    window.location.href = 'mural/mural.php';
                 } else {
                     errorMessage.textContent = 'Usuário ou senha inválidos.';
                 }

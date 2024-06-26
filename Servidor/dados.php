@@ -82,7 +82,7 @@
         }
 
         function goBack() {
-            window.location.href = 'home.php';
+            window.location.href = 'mural/mural.php';
         }
     </script>
 </head>
