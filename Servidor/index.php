@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="https://www.google.com/recaptcha/api.js"></script>
-    <style>
+<style>
 
         body, html{
         height: 100%;
@@ -145,7 +145,7 @@
         }
 
 
-    </style>
+</style>
 </head>
 <body>
 
@@ -174,65 +174,53 @@
 </body>
 
 <script type='text/javascript'>
-   function validar() {
-     if (grecaptcha.getResponse() == ""){
-        alert('Falha na verificação do reCAPTCHA. Por favor, tente novamente.');
-        return false;
-     }
-   }
- </script>
-
-
-<script>
-        function showLoadingAndRedirect() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const content = document.querySelector('.container');
-
-            // Mostrar a tela de loading
-            loadingScreen.style.display = 'flex';
-            // Ocultar o conteúdo da página
-            content.style.display = 'none';
-
-            // Redirecionar para a próxima página após 2 segundos
-            setTimeout(function() {
-                window.location.href = 'mural.php'; // Substitua pelo URL da próxima página
-            }, 2000);
+    //Valida o reCAPTCHA
+    function validar() {
+        if (grecaptcha.getResponse() == ""){
+            alert('Falha na verificação do reCAPTCHA. Por favor, tente novamente.');
+            return false;
         }
-    </script>
+    }
 
-<script>
-window.addEventListener('load', function() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const content = document.getElementById('content');
 
-            // Esconder a tela de loading
-            loadingScreen.style.display = 'none';
-            // Mostrar o conteúdo da página
-            content.style.display = 'block';
 
-            // Redirecionar para a próxima página após 2 segundos
-            setTimeout(function() {
-                window.location.href = 'proxima-pagina.html'; // Substitua pelo URL da próxima página
-            }, 2000);
-        });
+    //reload
+    function showLoadingAndRedirect() {
+        const loadingScreen = document.getElementById('loading-screen');
+        const content = document.querySelector('.container');
 
+        // Mostrar a tela de loading
+        loadingScreen.style.display = 'flex';
+        // Ocultar o conteúdo da página
+        content.style.display = 'none';
+
+        // Redirecionar para a próxima página após 2 segundos
+        setTimeout(function() {
+            window.location.href = 'mural.php'; // Substitua pelo URL da próxima página
+        }, 2000);
+    }
+    //funcao que nao esta funcionando
+    window.addEventListener('load', function() {
+                const loadingScreen = document.getElementById('loading-screen');
+                const content = document.getElementById('content');
+
+                // Esconder a tela de loading
+                loadingScreen.style.display = 'none';
+                // Mostrar o conteúdo da página
+                content.style.display = 'block';
+
+                // Redirecionar para a próxima página após 2 segundos
+                setTimeout(function() {
+                    window.location.href = 'proxima-pagina.html'; // Substitua pelo URL da próxima página
+                }, 2000);
+            });
 </script>
+<?php
+    if (isset($_POST['enviar'])){
+        print($_POST);
 
-<script>
-   function valida() {
-     if (grecaptcha.getResponse() == ""){
-        alert("False");
-        return false;
-     }
-
-   }
- </script>
- <?php
-if (isset($_POST['enviar'])){
-    print($_POST);
-
-}
- ?>
+    }
+?>
 
 
 
