@@ -1,4 +1,4 @@
-document.getElementById('loginForm').addEventListener('submit', async function(event) {
+Servidor/conexao.phpdocument.getElementById('loginForm').addEventListener('submit', async function(event) {
     event.preventDefault();
     
     var username = document.getElementById('username').value;

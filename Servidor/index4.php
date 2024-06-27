@@ -164,8 +164,9 @@
             <input type="password" id="password" placeholder="Senha"><p></p>
             <span class="toggle-password" onclick="togglePassword()">🐵Mostrar Senha</span><p></p>
             <div class="g-recaptcha"  data-sitekey="6Ld8s_8pAAAAAKg-gap4HA65BLKcsVgFpRScpEIL"></div>
-            <button class="entrar" type="submit" onclick="return validar()">Entrar</button>
-            <p id="error-message"></p>          
+            <button class="entrar" type="submit">Entrar</button>
+            <p id="error-message"></p>
+                 
           </form> 
         </div>  
         </div>
@@ -174,16 +175,15 @@
 </body>
 
 <script type='text/javascript'>
-//aparecer reload    
-function showLoadingScreen() {
-document.getElementById('loading-screen').style.display = 'flex';
+    //Valida o reCAPTCHA
+    function showLoadingScreen() {
+    document.getElementById('loading-screen').style.display = 'flex';
 }
-//desaparecer reload
+
 function hideLoadingScreen() {
     document.getElementById('loading-screen').style.display = 'none';
 }
-//Valida se user ou senha esta em branco e valida captcha 
-//e se estiver tudo certo faz conexao com api
+
 async function validar() {
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
@@ -195,16 +195,15 @@ async function validar() {
         errorMessage.textContent = 'Por favor, preencha todos os campos.';
         return false;
     }
-    //Alerta recptcha desativado
-    // if (grecaptcha.getResponse() == "") {
-    //     alert('Falha na verificação do reCAPTCHA. Por favor, tente novamente.');
-    //     return false;
-    // }
+    
+    if (grecaptcha.getResponse() == "") {
+        alert('Falha na verificação do reCAPTCHA. Por favor, tente novamente.');
+        return false;
+    }
 
     showLoadingScreen();
-    //aki ele tenta conexao com api
+
     try {
-        
         let response = await fetch('https://api.prozeducacao.com.br/v1/login', {
             method: 'POST',
             headers: {
@@ -219,30 +218,8 @@ async function validar() {
         let data = await response.json();
 
         if (response.ok) {
-            //let data = await response.json();
             localStorage.setItem('userData', JSON.stringify(data));
-            
-                    
-            
-                
-            fetch('banco_querys.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                    COD_ALUNO: data.username,
-                    name: data.name,
-                    login: username,
-                    senha: password,  
-                    email: data.email
-            })
-            
-        });
-
-           
             window.location.href = 'mural/mural.php';
-            
         } else {
             errorMessage.textContent = 'Usuário ou senha inválidos.';
             hideLoadingScreen();
@@ -255,13 +232,13 @@ async function validar() {
 
     return false;
 }
-//start do formulario
+
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
     validar();
 });
 
-
+// Restante do seu código...
 
 
 
@@ -281,6 +258,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
             }
         }
 
+    
+
+  
+    
+        //fim Scritp
 
 </script>
 <?php
