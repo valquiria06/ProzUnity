@@ -8561,4 +8561,11 @@ a[data-toggle="collapse"] {
       padding: 4px 8px; /* Reduz ainda mais o tamanho dos botões */
       font-size: 10px; /* Reduz ainda mais o tamanho da fonte */
   }
+  content_textbox{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -4%;
+  }
 }
