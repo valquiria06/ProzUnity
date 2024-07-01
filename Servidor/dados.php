@@ -62,16 +62,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const userData = JSON.parse(localStorage.getItem('userData'));
+            let formattedDate = userData.DT_NASC.split('-').reverse().join('/');
             if (!userData) {
                 window.location.href = 'index.php';
             } else {
-                document.getElementById('user-username').textContent = userData.username;
-                document.getElementById('user-name').textContent = userData.name;
+                document.getElementById('user-username').textContent = userData.COD_ALUNO;
+                document.getElementById('user-name').textContent = userData.nome;
                 document.getElementById('user-email').textContent = userData.email;
-                document.getElementById('user-telephone').textContent = userData.telephone;
-                
-                document.getElementById('user-cpf').textContent = userData.cpf;
-                document.getElementById('user-birthdate').textContent = userData.birthdate;
+                document.getElementById('user-telephone').textContent = userData.CEL;
+                document.getElementById('user-cpf').textContent = userData.CPF;
+                document.getElementById('user-birthdate').textContent = formattedDate;
                 
                    }
         });

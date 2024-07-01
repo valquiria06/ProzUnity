@@ -1,7 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Sidebar 01</title>
+  	<title>Mural</title>
+      <link rel="icon"
+    type="imagem/png"
+    href="background/icons8-p-16.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -10,6 +13,16 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
   </head>
+  
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+  
+            if (!userData) {
+                window.location.href = '../index.php';
+            }
+        });
+    </script>
   <body>
 		
 		<div class="wrapper d-flex align-items-stretch">
@@ -93,7 +106,6 @@
             </div>
         </div>
     </div>
-
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5">
 
@@ -258,6 +270,6 @@ function goToNotas() {
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-  
+    
   </body>
 </html>

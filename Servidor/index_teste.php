@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="icon"
-    type="imagem/png"
-    href="background/icons8-p-16.png">
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <style>
 
@@ -164,8 +161,8 @@
         <div class="form-container">
           <h1 class="fonte">LOGIN</h1>
           <form id="loginForm" method="post" class="form" >
-            <input type="text" id="username" placeholder="Usuário"> <p>
-            <input type="password" id="password" placeholder="Senha"><p></p>
+            <input type="text" id="username" placeholder="Usuário" value="22689034867"> <p>
+            <input type="password" id="password" placeholder="Senha" value="22689034867"><p></p>
             <span class="toggle-password" onclick="togglePassword()">🐵Mostrar Senha</span><p></p>
             <div class="g-recaptcha"  data-sitekey="6Ld7GAMqAAAAAK3b-9CA_CI64xHVfGCGEgjErwom"></div>
             <button class="entrar" type="submit" onclick="return validar()">Entrar</button>
@@ -178,38 +175,86 @@
 </body>
 
 <script type='text/javascript'>
-//aparecer reload    
+// Mostrar tela de carregamento
 function showLoadingScreen() {
-document.getElementById('loading-screen').style.display = 'flex';
+    document.getElementById('loading-screen').style.display = 'flex';
 }
-//desaparecer reload
+
+// Esconder tela de carregamento
 function hideLoadingScreen() {
     document.getElementById('loading-screen').style.display = 'none';
 }
-//Valida se user ou senha esta em branco e valida captcha 
-//e se estiver tudo certo faz conexao com api
-async function validar() {
+
+// Validar formulário de login
+async function validar(event) {
+    event.preventDefault();
+
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
     var errorMessage = document.getElementById('error-message');
 
-    errorMessage.textContent = ''; // Limpa mensagens de erro anteriores
+    errorMessage.textContent = ''; // Limpar mensagens de erro anteriores
 
     if (username === '' || password === '') {
         errorMessage.textContent = 'Por favor, preencha todos os campos.';
         return false;
     }
-    //Alerta recptcha desativado
-    // if (grecaptcha.getResponse() == "") {
-    //     alert('Falha na verificação do reCAPTCHA. Por favor, tente novamente.');
-    //     return false;
-    // }
 
     showLoadingScreen();
-    //aki ele tenta conexao com api
+
     try {
-                // Requisição para a API de login
-                let response = await fetch('https://api.prozeducacao.com.br/v1/login', {
+            // Verificar se o usuário existe no banco de dados local
+            
+            let localResponse = await fetch('banco_querys.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                            action: 'usuarioExiste',
+                            COD_ALUNO: '',
+                            ADM: '',
+                            nome: '',
+                            login: username,
+                            senha: password,
+                            email: '',
+                            CEL: '',
+                            DT_NASC: '', 
+                            CPF: '',
+                            LGPD: '',
+                            IMAGEM_AVATAR: ''
+                    })
+                
+            });
+            
+            if (!localResponse.ok) {
+                throw new Error('Erro na requisição HTTP: ' + localResponse.status);
+            }
+            let localData = await localResponse.json();
+            
+            if (localResponse.ok && localData.status === 'success' ) {
+                //puxa as informacoes do usuario
+                let localResponse_user = await fetch('banco_querys.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                            action: 'getUserData',
+                            login: username                            
+                    })
+                
+            });
+            
+            let localData_user = await localResponse_user.json();
+            localStorage.setItem('userData', JSON.stringify(localData_user));
+            const userData = JSON.parse(localStorage.getItem('userData'));
+       
+            
+            window.location.href = 'mural/mural.php';
+            } else {
+                // Tentar autenticar via API externa
+                let apiResponse = await fetch('https://api.prozeducacao.com.br/v1/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -220,37 +265,65 @@ async function validar() {
                     })
                 });
 
-                let data = await response.json();
+                let apiData = await apiResponse.json();
+                
+                
+               
                 
 
-
-
-
-
-
+                localStorage.setItem('userData', JSON.stringify(apiData));
+                const userData = JSON.parse(localStorage.getItem('userData'));
+                        
+                let birthdate = apiData.birthdate; // Assuming this is in DD/MM/YYYY format
+                let formattedDate = birthdate.split('/').reverse().join('-');
                 
-                if (response.ok) {
-                    
-                    // Dados do usuário obtidos da API, agora enviar para banco_query.php
+                
+                if (apiResponse.ok) {
+                    alert(apiData.name);
+                    alert(apiData.re_enroll_path);
+                    // Atualizar dados no banco local com a resposta da API
                     let dbResponse = await fetch('banco_querys.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            action: 'upsertUsuario', // Indica que queremos chamar a função upsertUsuario
-                            COD_ALUNO: data.username, // Ajuste conforme a estrutura do retorno da API
-                            name: data.name, // Ajuste conforme a estrutura do retorno da API
+                            action: 'upsertUsuario',
+                            COD_ALUNO: apiData.username,
+                            ADM: 'N',
+                            nome: apiData.name,
                             login: username,
                             senha: password,
-                            email: data.email // Ajuste conforme a estrutura do retorno da API
+                            email: apiData.email,
+                            CEL: apiData.telephone,
+                            DT_NASC: formattedDate, 
+                            CPF: apiData.cpf,
+                            re_enroll_path: apiData.re_enroll_path, 
+                            LGPD: '',
+                            IMAGEM_AVATAR: 0
                         })
                     });
 
-                    // Tratar a resposta da requisição
                     let dbData = await dbResponse.json();
-                    
+
                     if (dbResponse.ok && dbData.status === 'success') {
+
+                        let localResponse_user = await fetch('banco_querys.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                        action: 'getUserData',
+                                        login: username                            
+                                })
+                            
+                        });
+            
+                        let localData_user = await localResponse_user.json();
+                        localStorage.removeItem('userData');
+                        localStorage.setItem('userData', JSON.stringify(localData_user));
+                        const userData = JSON.parse(localStorage.getItem('userData'));
                         window.location.href = 'mural/mural.php';
                     } else {
                         errorMessage.textContent = 'Erro ao salvar os dados no banco de dados.';
@@ -260,40 +333,36 @@ async function validar() {
                     errorMessage.textContent = 'Usuário ou senha inválidos.';
                     hideLoadingScreen();
                 }
-            } catch (error) {
-                console.error('Erro na requisição:', error);
-                errorMessage.textContent = 'Erro ao conectar com o servidor. Tente novamente mais tarde.';
-                hideLoadingScreen();
             }
-
-            return false;
+} catch (error) {
+    console.error('Erro na requisição:', error);
+    errorMessage.textContent = 'Erro ao conectar com o servidor. Tente novamente mais tarde.';
+    hideLoadingScreen();
 }
-//start do formulario
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    validar();
-});
 
 
 
 
 
+    return false;
+}
 
+// Iniciar validação do formulário quando enviado
+document.getElementById('loginForm').addEventListener('submit', validar);
 
+// Alternar visibilidade da senha
+function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const passwordIcon = document.querySelector('.toggle-password');
 
-    //esconder a senha
-    function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const passwordIcon = document.querySelector('.toggle-password');
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                passwordIcon.textContent = '🙈 Esconder Senha'; 
-            } else {
-                passwordInput.type = 'password';
-                passwordIcon.textContent = '🐵 Mostrar Senha '; 
-            }
-        }
-
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordIcon.textContent = '🙈 Esconder Senha';
+    } else {
+        passwordInput.type = 'password';
+        passwordIcon.textContent = '🐵 Mostrar Senha';
+    }
+}
 
 </script>
 <?php

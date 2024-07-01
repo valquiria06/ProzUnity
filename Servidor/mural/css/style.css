@@ -8511,7 +8511,7 @@ a[data-toggle="collapse"] {
 
 @media (max-width: 768px) {
   .modal-content {
-      width: 95%; /* Largura da modal para dispositivos móveis */
+      width: 50%; /* Largura da modal para dispositivos móveis */
       margin: 5% auto; /* Ajuste de margem para centralizar */
   }
 
