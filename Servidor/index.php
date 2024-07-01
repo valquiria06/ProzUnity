@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>ProzUnity</title>
+    <link rel="icon"
+    type="imagem/png"
+    href="background/icons8-p-16.png">
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <style>
 
