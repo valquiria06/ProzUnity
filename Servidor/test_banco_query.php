@@ -1,10 +1,11 @@
 <?php
 // Dados a serem enviados para o script PHP de inserção/atualização
 $data = array(
-    'action' => 'getUserData',
+    'action' =>     'getMural',
+    'login' =>      '22689034867'
+
     
     
-    'login' => '22689034867',
     
     
 );

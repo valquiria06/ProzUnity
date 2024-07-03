@@ -297,12 +297,12 @@ async function validar(event) {
                             CEL: apiData.telephone,
                             DT_NASC: formattedDate, 
                             CPF: apiData.cpf,
-                            re_enroll_path: apiData.re_enroll_path, 
+                            re_enroll_path: '', 
                             LGPD: '',
                             IMAGEM_AVATAR: 0
                         })
                     });
-
+                    
                     let dbData = await dbResponse.json();
 
                     if (dbResponse.ok && dbData.status === 'success') {

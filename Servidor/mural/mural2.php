@@ -176,7 +176,7 @@
               <!--  id="comment-box" -->
               <button class="comment-button" onclick="handleCommentButtonClick();">Comentar</button>
               <button  onclick="loadComments()">Recarregar Comentários</button>
-              <button id="toggleAutoLoadBtn" class="off" onclick="toggleAutoLoad()">Auto Load: Desligado</button>
+              <button id="toggleAutoLoadBtn" class="off" onclick="toggleAutoLoad()">Desligado Recarregar auto</button>
           </div>
           
       </div>
@@ -453,7 +453,7 @@ let autoLoadInterval; // Variável para armazenar o ID do intervalo
             autoLoadInterval = setInterval(loadComments, 15000); // Chama loadComments() a cada 15 segundos
             document.getElementById('toggleAutoLoadBtn').classList.remove('off');
             document.getElementById('toggleAutoLoadBtn').classList.add('on');
-            document.getElementById('toggleAutoLoadBtn').textContent = 'Auto Load: Ligado';
+            document.getElementById('toggleAutoLoadBtn').textContent = 'Ligado Recarregar auto';
             console.log('Auto Load ativado.');
         }
 
@@ -463,7 +463,7 @@ let autoLoadInterval; // Variável para armazenar o ID do intervalo
             clearInterval(autoLoadInterval); // Limpa o intervalo
             document.getElementById('toggleAutoLoadBtn').classList.remove('on');
             document.getElementById('toggleAutoLoadBtn').classList.add('off');
-            document.getElementById('toggleAutoLoadBtn').textContent = 'Auto Load: Desligado';
+            document.getElementById('toggleAutoLoadBtn').textContent = 'Desligado Recarregar auto';
             console.log('Auto Load desativado.');
         }
 

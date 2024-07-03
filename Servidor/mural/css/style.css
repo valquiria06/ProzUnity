@@ -8301,7 +8301,7 @@ a[data-toggle="collapse"] {
     margin-top: -4%;
 }
 .textbox-container {
-  width: 80%;
+  width: 90%;
   max-width: 500px;
   margin: auto;
   text-align: center;
@@ -8324,7 +8324,7 @@ a[data-toggle="collapse"] {
   color: white;
   background-color: #b562e6;
   border: none;
-  border-radius: 4px;
+  border-radius: 40px;
   cursor: pointer;
 }
 
@@ -8422,6 +8422,7 @@ a[data-toggle="collapse"] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 30px;
 }
 
 #backBtn:hover {
@@ -8509,13 +8510,43 @@ a[data-toggle="collapse"] {
   height: auto; 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 468px) {
   .modal-content {
-      width: 60%; /* Largura da modal para dispositivos móveis */
-      height: 40%;
+      width: 70%; /* Largura da modal para dispositivos móveis */
       margin: 5% auto; /* Ajuste de margem para centralizar */
       position: fixed;
       justify-content: center;
+      float: right;
+     margin-left: 60px;
+  }
+  .modal{
+    padding-top: 130px;
+  }
+  .comentario_user {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 40px;
+    margin: 10px 0;
+    background-color: #e2e3e5;
+    word-wrap: break-word; 
+    width: 380px;
+    margin-left: 3%;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+      width: 60%; /* Largura da modal para dispositivos móveis */
+      height: 65%;
+      margin: 5% auto; /* Ajuste de margem para centralizar */
+      position: fixed;
+      justify-content: center;
+      float: right;
+     margin-left: 50px;
+  }
+
+  .modal{
+    padding-top: 130px;
   }
 
   .circle {
@@ -8536,6 +8567,44 @@ a[data-toggle="collapse"] {
   button {
       padding: 6px 12px; /* Reduz o tamanho dos botões */
       font-size: 12px; /* Reduz o tamanho da fonte */
+  }
+  .comentario_user {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 40px;
+    margin: 10px 0;
+    background-color: #e2e3e5;
+    word-wrap: break-word; 
+    width: 320px;
+    margin-left: 4%;
+  }
+  .textbox-container {
+    width: 95%;
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+    margin-left: 12%;
+  }
+  
+  #comment-box {
+    width: 100%;
+    padding: 50px;
+    font-size: 16px;
+    border: 1px solid #eb822c;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    margin-left: -40px;
+    height: 180px;
+  }
+  .comment-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #b562e6;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-left: -10%;
   }
 }
 
@@ -8569,5 +8638,31 @@ a[data-toggle="collapse"] {
     justify-content: center;
     align-items: center;
     margin-top: -4%;
+    justify-content: center;
   }
+}
+
+
+/* Estilos para o botão */
+#toggleAutoLoadBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    outline: none;    
+    transition: background-color 0.3s ease;
+    border-radius: 40px;
+}
+
+/* Estilo padrão do botão */
+#toggleAutoLoadBtn.off {
+    background-color: red; /* Vermelho quando desligado */
+    border-radius: 40px;
+}
+
+/* Estilo quando ligado */
+#toggleAutoLoadBtn.on {
+    background-color: green; /* Verde quando ligado */
+    border-radius: 40px;
 }

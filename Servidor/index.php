@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="icon" type="imagem/png"  href="background/icons8-p-16.png">
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <style>
 
@@ -16,6 +17,7 @@
         align-items: center;
         background-size: cover;
         background-image: url('background/image.png');
+        overflow-x: hidden; /* Evita a barra de rolagem horizontal */
         }
 
         .conteiner{
@@ -113,38 +115,66 @@
         }
 
         #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(96, 21, 158, 0.473);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 1000;
-            display: none; /* Inicialmente oculto */
-        }
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(96, 21, 158, 0.473);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                z-index: 1000;
+                display: none; /* Inicialmente oculto */
+            }
 
-        .spinner {
-            width: 80px;
-            height: 80px;
-            border: 12px solid #651080;;
-            border-top: 12px solid #f05314;
-            border-radius: 50%;
-            animation: spin 1.5s linear infinite;
-        }
+            .spinner {
+                width: 80px;
+                height: 80px;
+                border: 12px solid #651080;
+                border-top: 12px solid #f05314;
+                border-radius: 50%;
+                animation: spin 1.5s linear infinite;
+            }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+            /* @media (max-width: 600px) {
+                .spinner {
+                    width: 60px;
+                    height: 60px;
+                    border: 8px solid #651080;
+                    border-top: 8px solid #f05314;
+                }
 
-        .loading-text {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #fff;
-        }
+                .loading-text {
+                    font-size: 16px;
+                }
+            } */
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            .loading-text {
+                margin-top: 20px;
+                font-size: 18px;
+                color: #fff;
+            }
+            @media (max-width: 768px) {
+                .conteiner {
+                    width: 100%; /* Largura total em telas pequenas */
+                    /*max-width: none; /* Remove a largura máxima em telas pequenas */
+                    padding: 0 0px; /* Adiciona um padding lateral para espaçamento */
+                }
+
+                .background {
+                    padding: 170px 150px; /* Ajusta o preenchimento do conteúdo interno */
+                }
+                body, html {
+                    justify-content: flex-start; /* Alinha o conteúdo no início do body */
+                }
+            }
 
 
     </style>
@@ -212,18 +242,9 @@ async function validar(event) {
                 },
                 body: JSON.stringify({
                             action: 'usuarioExiste',
-                            COD_ALUNO: '',
-                            ADM: '',
-                            nome: '',
                             login: username,
-                            senha: password,
-                            email: '',
-                            CEL: '',
-                            DT_NASC: '', 
-                            CPF: '',
-                            LGPD: '',
-                            IMAGEM_AVATAR: ''
-                    })
+                            senha: password
+                                                })
                 
             });
             
@@ -231,7 +252,7 @@ async function validar(event) {
                 throw new Error('Erro na requisição HTTP: ' + localResponse.status);
             }
             let localData = await localResponse.json();
-            
+            //se o usuario existe buscar informacoes dele
             if (localResponse.ok && localData.status === 'success' ) {
                 //puxa as informacoes do usuario
                 let localResponse_user = await fetch('banco_querys.php', {
@@ -245,14 +266,15 @@ async function validar(event) {
                     })
                 
             });
-            
+            //envia os dados para o userdata
             let localData_user = await localResponse_user.json();
             localStorage.setItem('userData', JSON.stringify(localData_user));
             const userData = JSON.parse(localStorage.getItem('userData'));
-       
-            
+                   
             window.location.href = 'mural/mural.php';
-            } else {
+            }
+            // CASO NAO EXISTA O CADASTRO ELE CONSULTA API .
+            else {
                 // Tentar autenticar via API externa
                 let apiResponse = await fetch('https://api.prozeducacao.com.br/v1/login', {
                     method: 'POST',
@@ -266,19 +288,15 @@ async function validar(event) {
                 });
 
                 let apiData = await apiResponse.json();
-                
-                
-               
-                
 
-                localStorage.setItem('userData', JSON.stringify(apiData));
-                const userData = JSON.parse(localStorage.getItem('userData'));
-                        
-                let birthdate = apiData.birthdate; // Assuming this is in DD/MM/YYYY format
-                let formattedDate = birthdate.split('/').reverse().join('-');
-                
                 
                 if (apiResponse.ok) {
+                    localStorage.setItem('userData', JSON.stringify(apiData));
+                    const userData = JSON.parse(localStorage.getItem('userData'));
+                            
+                    let birthdate = apiData.birthdate; // Assuming this is in DD/MM/YYYY format
+                    let formattedDate = birthdate.split('/').reverse().join('-');
+                        
                     
                     // Atualizar dados no banco local com a resposta da API
                     let dbResponse = await fetch('banco_querys.php', {
@@ -299,12 +317,12 @@ async function validar(event) {
                             CPF: apiData.cpf,
                             re_enroll_path: apiData.re_enroll_path, 
                             LGPD: '',
-                            IMAGEM_AVATAR: 0
+                            IMAGEM_AVATAR: 1
                         })
                     });
-
+                    
                     let dbData = await dbResponse.json();
-
+                   
                     if (dbResponse.ok && dbData.status === 'success') {
 
                         let localResponse_user = await fetch('banco_querys.php', {
