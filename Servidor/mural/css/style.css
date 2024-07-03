@@ -8512,8 +8512,10 @@ a[data-toggle="collapse"] {
 @media (max-width: 768px) {
   .modal-content {
       width: 60%; /* Largura da modal para dispositivos móveis */
-      height: 50%;
+      height: 40%;
       margin: 5% auto; /* Ajuste de margem para centralizar */
+      position: fixed;
+      justify-content: center;
   }
 
   .circle {
