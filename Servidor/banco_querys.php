@@ -75,10 +75,10 @@ function getMural($conn, $login) {
     $sql = "SELECT USUARIO.NOME, CONVERT(MURAL.MSG USING utf8) AS MSG_TEXT, MURAL.DT_COMPLETA 
             FROM MURAL 
             INNER JOIN USUARIO ON MURAL.id_login = USUARIO.LOGIN 
-            WHERE USUARIO.LOGIN = ? ORDER BY MURAL.ID DESC ";
+            ORDER BY MURAL.ID DESC ";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('s', $login);
+    //$stmt->bind_param('s', $login);
 
     if ($stmt->execute()) {
         $result = $stmt->get_result();

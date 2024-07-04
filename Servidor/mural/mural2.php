@@ -12,31 +12,6 @@
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
-
-<style>
-        /* Estilos para o botão */
-        #toggleAutoLoadBtn {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            color: white;
-            outline: none;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Estilo padrão do botão */
-        #toggleAutoLoadBtn.off {
-            background-color: red; /* Vermelho quando desligado */
-        }
-
-        /* Estilo quando ligado */
-        #toggleAutoLoadBtn.on {
-            background-color: green; /* Verde quando ligado */
-        }
-</style>
-
-
   </head>
   
 <script>
@@ -50,7 +25,7 @@
                 const nomeUsuarioElement = document.getElementById('nomeUsuario');
                 const userPhotoContainer = document.getElementById("userPhotoContainer");  
                 nomeUsuarioElement.textContent = userData.nome;
-                userPhotoContainer.innerHTML = `<img src="imagens_avatares/${userData.IMAGEM_AVATAR}.png" alt="Foto do Usuário">`;
+                userPhotoContainer.innerHTML = <img src="imagens_avatares/${userData.IMAGEM_AVATAR}.png" alt="Foto do Usuário">;
                 
             }
         });
@@ -176,7 +151,6 @@
               <!--  id="comment-box" -->
               <button class="comment-button" onclick="handleCommentButtonClick();">Comentar</button>
               <button  onclick="loadComments()">Recarregar Comentários</button>
-              <button id="toggleAutoLoadBtn" class="off" onclick="toggleAutoLoad()">Desligado Recarregar auto</button>
           </div>
           
       </div>
@@ -200,11 +174,11 @@
                 const timestamp = document.createElement('div');
                 timestamp.className = 'timestamp';
                 const now = new Date();
-                var data_postagem = `${now.toLocaleDateString()} às ${now.toLocaleTimeString()}`
-                timestamp.textContent = `Postado em: ${data_postagem}`;
+                var data_postagem = ${now.toLocaleDateString()} às ${now.toLocaleTimeString()}
+                timestamp.textContent = Postado em: ${data_postagem};
 
                 const commentContent = document.createElement('p');
-                commentContent.innerHTML = `<strong>${userData.nome}</strong><br>${commentText.replace(/\n/g, '<br>')}`;
+                commentContent.innerHTML = <strong>${userData.nome}</strong><br>${commentText.replace(/\n/g, '<br>')};
 
                 newComment.appendChild(commentContent);
                 newComment.appendChild(timestamp);
@@ -303,7 +277,7 @@ const userData = JSON.parse(localStorage.getItem('userData'));
         circle.addEventListener("click", async function() { // Marcar como async
             const imgSrc = this.getAttribute("data-img-src");
             if (imgSrc) { // Verifica se imgSrc não está vazio
-                userPhotoContainer.innerHTML = `<img src="imagens_avatares/${imgSrc}.png" alt="Foto do Usuário">`;
+                userPhotoContainer.innerHTML = <img src="imagens_avatares/${imgSrc}.png" alt="Foto do Usuário">;
                 modal.style.display = "none"; // Fecha a modal após a seleção
 
                 try {
@@ -335,7 +309,7 @@ function goToNotas() {
             const userData = JSON.parse(localStorage.getItem('userData'));
             if (userData && userData.re_enroll_path) {
                 const url1 = userData.re_enroll_path;
-                const url = `https://enferminas.prozeducacao.com.br/academico/boletim1.php?${userData.re_enroll_path.split('?')[1]}`;
+                const url = https://enferminas.prozeducacao.com.br/academico/boletim1.php?${userData.re_enroll_path.split('?')[1]};
                 const win1 = window.open(url1, '_blank');
 
                 setTimeout(function() {
@@ -377,11 +351,11 @@ function goToNotas() {
                 const timestamp = document.createElement('div');
                 timestamp.className = 'timestamp';
                 const now = new Date();
-                var data_postagem = `${now.toLocaleDateString()} às ${now.toLocaleTimeString()}`
-                timestamp.textContent = `Postado em: ${data}`;
+                var data_postagem = ${now.toLocaleDateString()} às ${now.toLocaleTimeString()}
+                timestamp.textContent = Postado em: ${data};
 
                 const commentContent = document.createElement('p');
-                commentContent.innerHTML = `<strong>${nome}</strong><br>${texto.replace(/\n/g, '<br>')}`;
+                commentContent.innerHTML = <strong>${nome}</strong><br>${texto.replace(/\n/g, '<br>')};
 
                 newComment.appendChild(commentContent);
                 newComment.appendChild(timestamp);
@@ -398,19 +372,16 @@ function goToNotas() {
 
         async function loadComments() {
     try {
-        const commentBox = document.getElementById('comment-box');
-        const commentText = commentBox.value.trim(); // Salva o texto atual do comment-box
-
-        const response = await fetch('../banco_querys.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                action: 'getMural',
-                login: userData.login
-            })
-        });
+        const response  = await fetch('../banco_querys.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            action :     'getMural',
+                            login :      userData.login                           
+                            })
+                    });
         const data = await response.json();
 
         const comments = document.getElementById('comments');
@@ -424,15 +395,10 @@ function goToNotas() {
         } else {
             console.error('Erro ao carregar os comentários:', data.message);
         }
-
-        // Restaura o conteúdo do comment-box após carregar os comentários
-        commentBox.value = commentText;
-
     } catch (error) {
         console.error('Erro na solicitação AJAX:', error);
     }
 }
-
 window.onload = loadComments;
 
 function handleCommentButtonClick() {
@@ -443,38 +409,6 @@ function handleCommentButtonClick() {
     });
 }
 
-
-let autoLoadInterval; // Variável para armazenar o ID do intervalo
-        let autoLoadEnabled = false; // Variável de estado para controle
-
-        // Função para iniciar o intervalo de carga automática a cada 15 segundos
-        function startAutoLoad() {
-            autoLoadEnabled = true; // Ativa o controle
-            autoLoadInterval = setInterval(loadComments, 15000); // Chama loadComments() a cada 15 segundos
-            document.getElementById('toggleAutoLoadBtn').classList.remove('off');
-            document.getElementById('toggleAutoLoadBtn').classList.add('on');
-            document.getElementById('toggleAutoLoadBtn').textContent = 'Ligado Recarregar auto';
-            console.log('Auto Load ativado.');
-        }
-
-        // Função para parar o intervalo de carga automática
-        function stopAutoLoad() {
-            autoLoadEnabled = false; // Desativa o controle
-            clearInterval(autoLoadInterval); // Limpa o intervalo
-            document.getElementById('toggleAutoLoadBtn').classList.remove('on');
-            document.getElementById('toggleAutoLoadBtn').classList.add('off');
-            document.getElementById('toggleAutoLoadBtn').textContent = 'Desligado Recarregar auto';
-            console.log('Auto Load desativado.');
-        }
-
-        // Função para alternar entre ligar e desligar o intervalo de carga automática
-        function toggleAutoLoad() {
-            if (autoLoadEnabled) {
-                stopAutoLoad(); // Se estiver ligado, desliga
-            } else {
-                startAutoLoad(); // Se estiver desligado, liga
-            }
-        }
 
 
 

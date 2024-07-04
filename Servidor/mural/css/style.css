@@ -72,6 +72,47 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem; }
 
+  /* Estilos para o pop-up */
+.popup {
+  display: none; /* Escondido por padrão */
+  position: fixed; /* Fica fixo na tela */
+  z-index: 1; /* Fica na frente de outros elementos */
+  left: 0;
+  top: 0;
+  width: 100%; /* Largura total da tela */
+  height: 100%; /* Altura total da tela */
+  overflow: auto; /* Ativa a rolagem se necessário */
+  background-color: rgb(0,0,0); /* Cor de fundo */
+  background-color: rgba(0,0,0,0.4); /* Cor de fundo com opacidade */
+}
+
+/* Estilos para o conteúdo do pop-up */
+.popup-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% do topo e centralizado horizontalmente */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Largura do conteúdo */
+  max-width: 600px; /* Largura máxima do conteúdo */
+  border-radius: 10px; /* Bordas arredondadas */
+}
+
+/* Estilos para o botão de fechar */
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 p {
   margin-top: 0;
   margin-bottom: 1rem; }
@@ -8472,6 +8513,22 @@ a[data-toggle="collapse"] {
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
+.modal2 {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+  padding-top: 60px; 
+}
+
+/* Modal da documentação*/
+
 .back-to-top:hover {
   background-color: #FF8C00;
 }
@@ -8512,7 +8569,7 @@ a[data-toggle="collapse"] {
 
 @media (max-width: 468px) {
   .modal-content {
-      width: 70%; /* Largura da modal para dispositivos móveis */
+      width: 60%; /* Largura da modal para dispositivos móveis */
       margin: 5% auto; /* Ajuste de margem para centralizar */
       position: fixed;
       justify-content: center;
@@ -8536,8 +8593,8 @@ a[data-toggle="collapse"] {
 
 @media (max-width: 768px) {
   .modal-content {
-      width: 60%; /* Largura da modal para dispositivos móveis */
-      height: 65%;
+      width: 40%; /* Largura da modal para dispositivos móveis */
+      height: 20%;
       margin: 5% auto; /* Ajuste de margem para centralizar */
       position: fixed;
       justify-content: center;

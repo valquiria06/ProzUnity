@@ -13,29 +13,6 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
 
-<style>
-        /* Estilos para o botão */
-        #toggleAutoLoadBtn {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            color: white;
-            outline: none;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Estilo padrão do botão */
-        #toggleAutoLoadBtn.off {
-            background-color: red; /* Vermelho quando desligado */
-        }
-
-        /* Estilo quando ligado */
-        #toggleAutoLoadBtn.on {
-            background-color: green; /* Verde quando ligado */
-        }
-</style>
-
 
   </head>
   
@@ -99,22 +76,37 @@
               </ul>
 	          </li>
 	          <li>
-              <a href="#">Denúncias</a>
+              <a id="openPopupBtn3" href="#">LGPD</a>
 	          </li>
 	          <li>
-              <a href="#">Documentação da Página</a>
+            <!--  <a href="#">Documentação da Página</a> -->
+              <a id="openModalBtn2" href="#">Documentação</a>
 	          </li>
-	        </ul>
-
+	          </ul>
 	        <!-- <div class="footer">
-	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
+	        	<p> Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
 						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
 						   Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. </p>
 	        </div> -->
 
 	      </div>
     	</nav>
- 
+      <!---Popup para ver a documentação-->
+
+      <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Conteúdo da documentação</p>
+        </div>
+    </div>
+     <!---Popup para a LGPD-->
+    <div id="myModal3" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Conteúdo</p>
+        </div>
+    </div>
+
       <!---Popup para selecionar o Avatar-->
       <div id="myModal" class="modal">
         <div class="modal-content">
@@ -138,6 +130,7 @@
             </div>
         </div>
     </div>
+
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5">
 
@@ -158,11 +151,12 @@
                     <a class="nav-link" href="#">Início</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Suporte</a>
+                    <a href="#" class="nav-link" onclick="loadComments()">Recarregar Comentários</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link"  onclick="logout()">Sair</a>
                 <!--    <p><button class="nav-link" onclick="logout()">Logout</button></p> -->
+
                   <!-- <a href="#" class="ogout-button" onclick="minhaFuncao()">Clique aqui para chamar a função</a> -->
                 </li>
               </ul>
@@ -175,7 +169,7 @@
               <textarea id="comment-box" rows="4" placeholder="Digite aqui..."></textarea>
               <!--  id="comment-box" -->
               <button class="comment-button" onclick="handleCommentButtonClick();">Comentar</button>
-              <button  onclick="loadComments()">Recarregar Comentários</button>
+             <!-- <button  onclick="loadComments()">Recarregar Comentários</button> -->
               <button id="toggleAutoLoadBtn" class="off" onclick="toggleAutoLoad()">Auto Load: Desligado</button>
           </div>
           
@@ -247,8 +241,8 @@
             
         }
 
-var modal = document.getElementById("myModal");
 var btn = document.getElementById("openModalBtn");
+var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
 
 //var backBtn = document.getElementById("backBtn");
@@ -267,13 +261,48 @@ window.onclick = function(event) {
     }
 }
 
-// Adiciona funcionalidade ao botão salvar
+//JS Do modal 02 (documentação)
+const modal2 = document.getElementById("myModal2");
+        const btn2 = document.getElementById("openModalBtn2");
+        const span2 = document.getElementsByClassName("close")[1];
+
+        btn2.onclick = function(event) {
+            event.preventDefault(); // Previne o comportamento padrão do link
+            modal2.style.display = "flex";
+        }
+
+        span2.onclick = function() {
+            modal2.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+        }
+
+//JS Do modal 03 (LGPD) PENDENTE
+const modal3= document.getElementById("myModal3");
+        const btn3 = document.getElementById("openModalBtn2");
+        const span3 = document.getElementsByClassName("close")[2];
+
+        btn3.onclick = function(event) {
+            event.preventDefault(); // Previne o comportamento padrão do link
+            modal2.style.display = "flex";
+        }
+
+        span3.onclick = function() {
+            modal2.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal3) {
+                modal2.style.display = "none";
+            }
+        }
 
 
-// Adiciona funcionalidade ao botão voltar
-//backBtn.onclick = function() {
-//    modal.style.display = "none";
-//}
+
 document.addEventListener("DOMContentLoaded", function() {
     const backToTopButton = document.getElementById("backToTop");
 
@@ -444,13 +473,13 @@ function handleCommentButtonClick() {
 }
 
 
-let autoLoadInterval; // Variável para armazenar o ID do intervalo
+        let autoLoadInterval; // Variável para armazenar o ID do intervalo
         let autoLoadEnabled = false; // Variável de estado para controle
 
         // Função para iniciar o intervalo de carga automática a cada 15 segundos
         function startAutoLoad() {
             autoLoadEnabled = true; // Ativa o controle
-            autoLoadInterval = setInterval(loadComments, 15000); // Chama loadComments() a cada 15 segundos
+            autoLoadInterval = setInterval(loadComments, 2000); // Chama loadComments() a cada 15 segundos
             document.getElementById('toggleAutoLoadBtn').classList.remove('off');
             document.getElementById('toggleAutoLoadBtn').classList.add('on');
             document.getElementById('toggleAutoLoadBtn').textContent = 'Auto Load: Ligado';

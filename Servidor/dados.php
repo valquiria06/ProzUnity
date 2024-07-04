@@ -12,19 +12,26 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background: url('background/dados.png');
         }
         .container {
             background: #ffffff;
             padding: 20px 40px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: left;
+            text-align: center;
             max-width: 600px;
             width: 100%;
         }
+
+        .text{
+
+            text-align: left;
+
+        }
+
         h1 {
-            color: #333;
+            color: #651080;
             margin-bottom: 20px;
         }
         p {
@@ -42,7 +49,7 @@
         button {
             padding: 10px 20px;
             margin-top: 20px;
-            background-color: #007BFF;
+            background-color: #f05314;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -50,13 +57,13 @@
             transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: red;
         }
         .back-button {
-            background-color: #6c757d;
+            background-color: #f05314;
         }
         .back-button:hover {
-            background-color: #5a6268;
+            background-color: #ff6b30f1;
         }
     </style>
     <script>
@@ -89,14 +96,16 @@
 <body>
     
     <div class="container">
-        <h1>Dados Cadastrais</h1>
-        <p>Code: <span id="user-username"></span></p>
-        <p>Nome: <span id="user-name"></span></p>
-        <p>Email: <span id="user-email"></span></p>
-        <p>Telefone: <span id="user-telephone"></span></p>
-        <p>Data de Nascimento: <span id="user-birthdate"></span></p>
-        <p>CPF: <span id="user-cpf"></span></p>
         
+     <h1>Dados Cadastrais</h1>
+        <div class="text">
+         <p><b style="color: #651080;">Code:</b> <span id="user-username"></span></p>
+         <p><b style="color: #651080;">Nome:</b> <span id="user-name"></span></p>
+         <p><b style="color: #651080;">Email:</b> <span id="user-email"></span></p>
+         <p><b style="color: #651080;">Telefone:</b> <span id="user-telephone"></span></p>
+         <p><b style="color: #651080;">Data de Nascimento:</b> <span id="user-birthdate"></span></p>
+         <p><b style="color: #651080;">CPF:</b> <span id="user-cpf"></span></p>
+        </div>
        
         
         <button onclick="logout()">Logout</button>

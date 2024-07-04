@@ -1,5 +1,5 @@
 <?php
-$url = parse_url("mysql://u751391022_prozunity:Prozunity123@projetospark.com.br:3306/u751391022_prozunity");
+$url = parse_url("mysql://root:BMqrfbGYgqwjnHFZxmdnDZpebHCPSnrP@monorail.proxy.rlwy.net:24210/railway");
 
 $host = $url["host"];
 $username = $url["user"];
