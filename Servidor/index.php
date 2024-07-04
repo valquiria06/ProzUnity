@@ -115,69 +115,69 @@
         }
 
         #loading-screen {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(96, 21, 158, 0.473);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                z-index: 1000;
-                display: none; /* Inicialmente oculto */
-            }
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(96, 21, 158, 0.473);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 1000;
+        display: none; /* Inicialmente oculto */
+        }
 
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 12px solid #651080;
+            border-top: 12px solid #f05314;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+        }
+
+        /* @media (max-width: 600px) {
             .spinner {
-                width: 80px;
-                height: 80px;
-                border: 12px solid #651080;
-                border-top: 12px solid #f05314;
-                border-radius: 50%;
-                animation: spin 1.5s linear infinite;
-            }
-
-            /* @media (max-width: 600px) {
-                .spinner {
-                    width: 60px;
-                    height: 60px;
-                    border: 8px solid #651080;
-                    border-top: 8px solid #f05314;
-                }
-
-                .loading-text {
-                    font-size: 16px;
-                }
-            } */
-
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
+                width: 60px;
+                height: 60px;
+                border: 8px solid #651080;
+                border-top: 8px solid #f05314;
             }
 
             .loading-text {
-                margin-top: 20px;
-                font-size: 18px;
-                color: #fff;
+                font-size: 16px;
             }
-            @media (max-width: 768px) {
-                .conteiner {
-                    width: 100%; /* Largura total em telas pequenas */
-                    /*max-width: none; /* Remove a largura máxima em telas pequenas */
-                    padding: 0 0px; /* Adiciona um padding lateral para espaçamento */
-                }
+        } */
 
-                .background {
-                    padding: 170px 150px; /* Ajusta o preenchimento do conteúdo interno */
-                }
-                body, html {
-                    justify-content: flex-start; /* Alinha o conteúdo no início do body */
-                }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #fff;
+        }
+        @media (max-width: 768px) {
+            .conteiner {
+                width: 100%; /* Largura total em telas pequenas */
+                /*max-width: none; /* Remove a largura máxima em telas pequenas */
+                padding: 0 0px; /* Adiciona um padding lateral para espaçamento */
             }
 
+            .background {
+                padding: 170px 150px; /* Ajusta o preenchimento do conteúdo interno */
+            }
+            body, html {
+                justify-content: flex-start; /* Alinha o conteúdo no início do body */
+            }
+        }
 
-    </style>
+
+</style>
 </head>
 <body>
     <div id="loading-screen">
