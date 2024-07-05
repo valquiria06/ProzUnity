@@ -81,7 +81,7 @@
               </ul>
 	          </li>
 	          <li>
-              <a id="openPopupBtn3" href="#">Documentação</a>
+              <a id="openPopupBtn3" href="https://github.com/valquiria06/ProzUnity/blob/main/README.md">Documentação</a>
 	          </li>
 	          <li>
             <!--  <a href="#">Documentação da Página</a> -->
@@ -258,13 +258,6 @@ span.onclick = function() {
     modal.style.display = "none";
 }
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-
 //JS Do modal 02 (LGPD novo)
         const modal2 = document.getElementById("myModal2");
         const btn2 = document.getElementById("openModalBtn2");
@@ -279,33 +272,16 @@ window.onclick = function(event) {
             modal2.style.display = "none";
         }
 
+
+        //funcao para fechar os modais cado o usuário clique fora deles
         window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
             if (event.target == modal2) {
                 modal2.style.display = "none";
             }
         }
-
-//JS Do modal 03 (LGPD) PENDENTE
-        const modal3= document.getElementById("myModal3");
-        const btn3 = document.getElementById("openModalBtn2");
-        const span3 = document.getElementsByClassName("close")[2];
-
-        btn3.onclick = function(event) {
-            event.preventDefault(); // Previne o comportamento padrão do link
-            modal2.style.display = "flex";
-        }
-
-        span3.onclick = function() {
-            modal2.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal3) {
-                modal2.style.display = "none";
-            }
-        }
-
-
 
 document.addEventListener("DOMContentLoaded", function() {
     const backToTopButton = document.getElementById("backToTop");

@@ -1,12 +1,9 @@
 <?php
 // Dados a serem enviados para o script PHP de inserção/atualização
 $data = array(
-    'action' =>     'upsertMural',
+    'action' =>     'upsertfoto',
     'login' =>      '22689034867',
-    'Dt_msg'  =>      '2024-07-03',
-    'MSG' =>          'teste coments',
-    'DT_COMPLETA'  =>  'teste de data'
-
+    'IMAGEM_AVATAR' =>  '2'
     
     
     

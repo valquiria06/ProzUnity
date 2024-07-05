@@ -130,7 +130,7 @@ function usuarioExiste($conn, $login, $senha) {
 }
 //FUNCAO ALTERAR AVATAR
 function upsertfoto($conn, $IMAGEM_AVATAR, $login) { 
-    $sql = "UPDATE `railway`.`USUARIO` SET `IMAGEM_AVATAR` = ? WHERE `LOGIN` = ?;";
+    $sql = "UPDATE `USUARIO` SET `IMAGEM_AVATAR` = ? WHERE `LOGIN` = ?;";
     $stmt = $conn->prepare($sql);  
     $stmt->bind_param('ss', $IMAGEM_AVATAR, $login);    
     if ($stmt->execute()) {
