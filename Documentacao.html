@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação ProzUnity</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        header {
+            background: #2f2e30;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #0779e4 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #0779e4;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        #titulo {
+        color: #ffffff; /* Substitua #3498db pela cor que você deseja */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 id="titulo">Documentação ProzUnity</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#introducao">Introdução</a></li>
+                <li><a href="#tecnologias-utilizadas">Tecnologias Utilizadas</a></li>
+                <li><a href="#estrutura-de-arquivos">Estrutura de Arquivos</a></li>
+                <li><a href="#instalacao">Instalação</a></li>
+                <li><a href="#uso">Uso</a></li>
+                <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li><a href="#integracao-com-api">Integração com API</a></li>
+                <li><a href="#melhorias-futuras">Melhorias Futuras</a></li>
+            </ul>
+        </nav>
+
+        <section id="introducao">
+            <h2>Introdução</h2>
+            <p>ProzUnity é uma aplicação web desenvolvida usando uma API de uma escola chamada Proz. A aplicação possui uma tela de login e um mural onde os usuários podem escolher avatares, deixar mensagens visíveis para todos os usuários e anotar aulas.</p>
+        </section>
+
+        <section id="tecnologias-utilizadas">
+            <h2>Tecnologias Utilizadas</h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>PHP</li>
+                <li>MySQL</li>
+            </ul>
+        </section>
+
+        <section id="estrutura-de-arquivos">
+            <h2>Estrutura de Arquivos</h2>
+            <pre>
+ProzUnity/
+│
+├── index.php           # Página de login
+├── mural.php           # Página do mural
+├── style.css           # CSS para estilização
+├── script.js           # JavaScript para funcionalidade
+└── imagens_avatares/   # Diretório contendo as imagens dos avatares
+            </pre>
+        </section>
+
+        <section id="instalacao">
+            <h2>Instalação</h2>
+            <p>Para acessar o ProzUnity, basta abrir o navegador e visitar o seguinte endereço:</p>
+            <pre>http://prozunity.sytes.net/</pre>
+        </section>
+
+        <section id="uso">
+            <h2>Uso</h2>
+            <h3>Login</h3>
+            <p><strong>Página:</strong> Login</p>
+            <p>A página de login é a porta de entrada para o ProzUnity. Aqui, os usuários devem inserir seu nome de usuário e senha para acessar o mural.</p>
+        
+            <h3>Mural</h3>
+            <p><strong>Página:</strong> Mural</p>
+            <p>Após fazer o login, os usuários são levados ao mural. Nesta página, é possível:</p>
+            <ul>
+                <li><strong>Escolher um Avatar:</strong> Os usuários podem selecionar um avatar a partir de uma variedade de opções disponíveis. Isso é feito clicando em uma das imagens de avatar.</li>
+                <li><strong>Deixar Mensagens:</strong> Os usuários podem deixar mensagens no mural, que ficam visíveis para todos os outros usuários. Para isso, basta digitar a mensagem no campo apropriado e clicar no botão "Enviar".</li>
+                <li><strong>Visualizar Mensagens:</strong> Todas as mensagens deixadas pelos usuários são exibidas no mural, permitindo que todos possam ver as contribuições dos outros.</li>
+            </ul>
+            <p>O mural é um espaço colaborativo onde todos podem interagir e compartilhar informações.</p>
+        </section>
+        
+        <section id="funcionalidades">
+            <h2>Funcionalidades</h2>
+            <ul>
+                <li><strong>Sistema de Login:</strong> Login seguro usando sessões PHP.</li>
+                <li><strong>Seleção de Avatar:</strong> Usuários podem escolher um avatar de um conjunto predefinido.</li>
+                <li><strong>Deixar Mensagens:</strong> Usuários podem deixar mensagens no mural.</li>
+                <li><strong>Ver Mensagens:</strong> Todos os usuários podem ver as mensagens deixadas por outros.</li>
+            </ul>
+        </section>
+
+        <section id="integracao-com-api">
+            <h2>Integração com API</h2>
+            <p>ProzUnity se conecta com a API da escola Proz para obter informações sobre os perfis dos usuários e outros dados importantes. Isso permite que o site sempre tenha informações atualizadas diretamente da fonte.</p>
+            <p>Por exemplo, quando um usuário faz login, o site busca as informações de perfil diretamente da API da escola. Isso garante que todas as informações, como nome, foto e outros detalhes, estejam sempre corretas e atualizadas.</p>
+            <p>A integração com a API é uma parte fundamental do ProzUnity, pois permite uma comunicação fluida e em tempo real com os dados da escola, tornando a experiência do usuário mais rica e confiável.</p>
+        </section>
+        
+
+        <section id="melhorias-futuras">
+            <h2>Melhorias Futuras</h2>
+            <ul>
+                <li><strong>Registro de Usuários:</strong> Permitir que novos usuários se registrem diretamente no site.</li>
+                <li><strong>Mensagens em Tempo Real:</strong> Implementar WebSocket para atualização de mensagens em tempo real.</li>
+                <li><strong>Segurança Aprimorada:</strong> Adicionar recursos como redefinição de senha e autenticação de dois fatores.</li>
+                <li><strong>Responsividade Mobile:</strong> Melhorar o layout para uma melhor experiência em dispositivos móveis.</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ProzUnity. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

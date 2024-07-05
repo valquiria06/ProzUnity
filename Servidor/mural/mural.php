@@ -19,8 +19,6 @@
 <script>
         document.addEventListener('DOMContentLoaded', function() {
             const userData = JSON.parse(localStorage.getItem('userData'));
-            
-  
             if (!userData) {
                 window.location.href = '../index.php';
             }else{
@@ -31,6 +29,13 @@
                 
             }
         });
+
+        
+
+
+
+
+
 </script>
   <body>
 		
@@ -76,11 +81,11 @@
               </ul>
 	          </li>
 	          <li>
-              <a id="openPopupBtn3" href="#">LGPD</a>
+              <a id="openPopupBtn3" href="#">Documentação</a>
 	          </li>
 	          <li>
             <!--  <a href="#">Documentação da Página</a> -->
-              <a id="openModalBtn2" href="#">Documentação</a>
+              <a id="openModalBtn2" href="#">LGPD</a>
 	          </li>
 	          </ul>
 	        <!-- <div class="footer">
@@ -96,7 +101,7 @@
       <div id="myModal2" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>Conteúdo da documentação</p>
+            <p>Conteúdo da LGPD</p>
         </div>
     </div>
      <!---Popup para a LGPD-->
@@ -110,8 +115,8 @@
       <!---Popup para selecionar o Avatar-->
       <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Escolha um Avatar: </p>
+            <span id="id_x_avatar" class="close"></span>
+            <!-- <p>Escolha um Avatar: </p> -->
             <div class="circle-container">
               <div class="circle" data-img-src="1"><img src="imagens_avatares/1.png" alt="Foto 1"></div>
               <div class="circle" data-img-src="2"><img src="imagens_avatares/2.png" alt="Foto 2"></div>
@@ -245,8 +250,6 @@ var btn = document.getElementById("openModalBtn");
 var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
 
-//var backBtn = document.getElementById("backBtn");
-
 btn.onclick = function() {
     modal.style.display = "block";
 }
@@ -261,8 +264,9 @@ window.onclick = function(event) {
     }
 }
 
-//JS Do modal 02 (documentação)
-const modal2 = document.getElementById("myModal2");
+
+//JS Do modal 02 (LGPD novo)
+        const modal2 = document.getElementById("myModal2");
         const btn2 = document.getElementById("openModalBtn2");
         const span2 = document.getElementsByClassName("close")[1];
 
@@ -282,7 +286,7 @@ const modal2 = document.getElementById("myModal2");
         }
 
 //JS Do modal 03 (LGPD) PENDENTE
-const modal3= document.getElementById("myModal3");
+        const modal3= document.getElementById("myModal3");
         const btn3 = document.getElementById("openModalBtn2");
         const span3 = document.getElementsByClassName("close")[2];
 
