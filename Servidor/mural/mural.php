@@ -67,7 +67,7 @@
                 <!--<button onclick="goToNotas()">Notas</button>-->
 	          </li>
 	          <li>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Dúvidas Frequentes</a>
+              <!-- <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Dúvidas Frequentes</a> -->
               <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
                     <a href="#">O que fazer em caso de perder a senha?</a>
@@ -85,7 +85,7 @@
 	          </li>
 	          <li>
             <!--  <a href="#">Documentação da Página</a> -->
-              <a id="openModalBtn2" href="#">LGPD</a>
+              <a id="openModalBtn2" href="./lgpd.html">LGPD</a>
 	          </li>
 	          </ul>
 	        <!-- <div class="footer">
@@ -100,8 +100,24 @@
 
       <div id="myModal2" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Conteúdo da LGPD</p>
+            <span class="close"></span>
+            <h2>Consequências do Descumprimento da LGPD</h2>
+        <p>De acordo com a Lei Geral de Proteção de Dados (LGPD), uma empresa pode sofrer diversas consequências em caso de vazamento de dados pessoais:</p>
+
+        <h3>Multas Administrativas</h3>
+        <p>A Autoridade Nacional de Proteção de Dados (ANPD) pode aplicar multas administrativas às empresas que descumprem as disposições da LGPD. Essas multas podem variar de 2% a 10% do faturamento global da empresa, com um limite máximo de R$ 50 milhões.</p>
+
+        <h3>Indenização</h3>
+        <p>As empresas também podem ser responsabilizadas por indenizar os titulares dos dados por danos morais ou materiais causados pelo vazamento.</p>
+
+        <h3>Proibição de Tratamento</h3>
+        <p>A ANPD também pode proibir a empresa de continuar a tratar os dados pessoais dos titulares afetados pelo vazamento.</p>
+
+        <h3>Publicidade da Infração</h3>
+        <p>A ANPD pode determinar a publicidade da infração, o que pode causar danos à imagem da empresa.</p>
+
+        <h3>Penalidades Criminais</h3>
+        <p>A LGPD prevê penalidades criminais, como prisão, para casos mais graves, como o uso ilícito de dados pessoais ou a recusa em fornecer informações à ANPD.</p>
         </div>
     </div>
      <!---Popup para a LGPD-->
@@ -153,7 +169,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Início</a>
+                    <!-- <a class="nav-link" href="#">Início</a> -->
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="loadComments()">Recarregar Comentários</a>
@@ -259,29 +275,29 @@ span.onclick = function() {
 }
 
 //JS Do modal 02 (LGPD novo)
-        const modal2 = document.getElementById("myModal2");
-        const btn2 = document.getElementById("openModalBtn2");
-        const span2 = document.getElementsByClassName("close")[1];
+        // const modal2 = document.getElementById("myModal2");
+        // const btn2 = document.getElementById("openModalBtn2");
+        // const span2 = document.getElementsByClassName("close")[1];
 
-        btn2.onclick = function(event) {
-            event.preventDefault(); // Previne o comportamento padrão do link
-            modal2.style.display = "flex";
-        }
+        // btn2.onclick = function(event) {
+        //     event.preventDefault(); // Previne o comportamento padrão do link
+        //     modal2.style.display = "flex";
+        // }
 
-        span2.onclick = function() {
-            modal2.style.display = "none";
-        }
+        // span2.onclick = function() {
+        //     modal2.style.display = "none";
+        // }
 
 
-        //funcao para fechar os modais cado o usuário clique fora deles
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-            if (event.target == modal2) {
-                modal2.style.display = "none";
-            }
-        }
+        // //funcao para fechar os modais cado o usuário clique fora deles
+        // window.onclick = function(event) {
+        //     if (event.target == modal) {
+        //         modal.style.display = "none";
+        //     }
+        //     if (event.target == modal2) {
+        //         modal2.style.display = "none";
+        //     }
+        // }
 
 document.addEventListener("DOMContentLoaded", function() {
     const backToTopButton = document.getElementById("backToTop");

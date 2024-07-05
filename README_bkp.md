@@ -43,6 +43,8 @@ https://gestao.prozeducacao.com.br/student/disciplines
 
 
 Apresentacao
+
+empresarial
 https://www.jusbrasil.com.br/artigos/vazamento-de-dados-pessoais-e-suas-penalidades-pela-lgpd/1735694348#:~:text=Essas%20multas%20podem%20variar%20de,ou%20materiais%20causados%20pelo%20vazamento.
 
 primeira multa
@@ -58,6 +60,10 @@ https://mpce.mp.br/2023/10/decon-multa-farmacias-de-fortaleza-em-ate-r-659-mil-p
 
 
 
+pessoal
+https://www.mind-7.org/painel/
+
+
 morto
 https://g1.globo.com/sp/campinas-regiao/noticia/2023/09/14/um-ano-apos-morte-de-ganhador-da-mega-sena-reus-ainda-esperam-julgamento-no-interior-de-sp.ghtml
 
@@ -65,6 +71,11 @@ https://g1.globo.com/sp/campinas-regiao/noticia/2023/09/14/um-ano-apos-morte-de-
 
 tirou a vida 
 https://noticias.r7.com/tecnologia-e-ciencia/tres-pessoas-se-suicidaram-apos-vazamento-no-ashley-madison-25082015/
+
+
+
+
+
 
 
 
