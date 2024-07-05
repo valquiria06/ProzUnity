@@ -11,13 +11,14 @@ ProzUnity é uma aplicação web desenvolvida utilizando uma API da escola Proz.
 - MySQL
 
 ## Estrutura de Arquivos
-ProzUnity/
-│
-├── index.php           # Página de login
-├── mural.php           # Página do mural
-├── style.css           # CSS para estilização
-├── script.js           # JavaScript para funcionalidade
-└── imagens_avatares/   # Diretório contendo as imagens dos avatares
+    ProzUnity/
+    │
+    ├── index.php           # Página de login
+    ├── mural.php           # Página do mural
+    ├── style.css           # CSS para estilização
+    ├── script.js           # JavaScript para funcionalidade
+    └── imagens_avatares/   # Diretório contendo as imagens dos avatares
+
 ## Instalação
 Para acessar o ProzUnity, basta abrir o navegador e visitar o seguinte endereço:
 http://prozunity.sytes.net/
